@@ -1,4 +1,3 @@
-
 <div class="event-detail">
     @if (event(); as evt) {
         <h2>Event Details</h2>
@@ -9,6 +8,8 @@
 
         <div class="timeline-container">
             <h3>Timeline</h3>
+            <p class="instruction">Click and drag on a room's timeline to select a time period</p>
+
             <div class="timeline">
                 <!-- Room labels on the left -->
                 <div class="room-labels">
@@ -25,24 +26,78 @@
                         }
                     </div>
 
-                    <!-- Room rows -->
+                    <!-- Room X row -->
                     <div class="room-row">
                         <div class="time-slots">
-                            @for (hour of timeLabels(); track hour) {
-                                <div class="time-slot"></div>
+                            @for (hour of timeLabels(); track $index) {
+                                <div
+                                        class="time-slot"
+                                        [class.selected]="isSlotSelected('Room X', $index)"
+                                        (mousedown)="onSlotMouseDown('Room X', hour, $index)"
+                                        (mouseenter)="onSlotMouseEnter('Room X', hour, $index)"
+                                        (mouseup)="onSlotMouseUp()"
+                                ></div>
                             }
                         </div>
                     </div>
+
+                    <!-- Room Y row -->
                     <div class="room-row">
                         <div class="time-slots">
-                            @for (hour of timeLabels(); track hour) {
-                                <div class="time-slot"></div>
+                            @for (hour of timeLabels(); track $index) {
+                                <div
+                                        class="time-slot"
+                                        [class.selected]="isSlotSelected('Room Y', $index)"
+                                        (mousedown)="onSlotMouseDown('Room Y', hour, $index)"
+                                        (mouseenter)="onSlotMouseEnter('Room Y', hour, $index)"
+                                        (mouseup)="onSlotMouseUp()"
+                                ></div>
                             }
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Event Creation Form -->
+        @if (showForm() && selection(); as sel) {
+            <div class="event-form-overlay">
+                <div class="event-form">
+                    <h3>Create Event</h3>
+                    <p><strong>Room:</strong> {{ sel.room }}</p>
+                    <p><strong>Time:</strong> {{ sel.startSlot?.time }} - {{ getNextTimeSlot(sel.endSlot?.time || '') }}</p>
+
+                    <form (ngSubmit)="submitEvent()">
+                        <div class="form-group">
+                            <label for="eventName">Event Name:</label>
+                            <input
+                                    id="eventName"
+                                    type="text"
+                                    [value]="eventName()"
+                                    (input)="eventName.set($any($event.target).value)"
+                                    required
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eventAbstract">Abstract:</label>
+                            <textarea
+                                    id="eventAbstract"
+                                    rows="4"
+                                    [value]="eventAbstract()"
+                                    (input)="eventAbstract.set($any($event.target).value)"
+                                    required
+                            ></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" [disabled]="!eventName() || !eventAbstract()">Create Event</button>
+                            <button type="button" (click)="cancelSelection()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        }
     } @else {
         <p>Event not found</p>
     }
