@@ -1,0 +1,81 @@
+.event-detail {
+  padding: 20px;
+}
+
+.timeline-container {
+  margin-top: 30px;
+
+  h3 {
+    margin-bottom: 15px;
+  }
+}
+
+.timeline {
+  display: flex;
+  gap: 10px;
+}
+
+.room-labels {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 40px; // Offset for time axis header
+}
+
+.room-label {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  padding-right: 10px;
+  min-width: 80px;
+}
+
+.timeline-grid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.time-axis {
+  display: flex;
+  height: 40px;
+  border-bottom: 2px solid #333;
+}
+
+.time-label {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px;
+  border-right: 1px solid #ddd;
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.room-row {
+  height: 60px;
+  border-bottom: 1px solid #ddd;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.time-slots {
+  display: flex;
+  height: 100%;
+}
+
+.time-slot {
+  flex: 1;
+  border-right: 1px solid #eee;
+  background-color: #f9f9f9;
+
+  &:last-child {
+    border-right: none;
+  }
+}

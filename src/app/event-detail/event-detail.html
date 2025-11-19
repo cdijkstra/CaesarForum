@@ -1,3 +1,4 @@
+
 <div class="event-detail">
     @if (event(); as evt) {
         <h2>Event Details</h2>
@@ -5,6 +6,43 @@
         <p><strong>Date:</strong> {{ evt.date }}</p>
         <p><strong>Start Hour:</strong> {{ evt.startHour }}</p>
         <p><strong>End Hour:</strong> {{ evt.endHour }}</p>
+
+        <div class="timeline-container">
+            <h3>Timeline</h3>
+            <div class="timeline">
+                <!-- Room labels on the left -->
+                <div class="room-labels">
+                    <div class="room-label">Room X</div>
+                    <div class="room-label">Room Y</div>
+                </div>
+
+                <!-- Timeline grid -->
+                <div class="timeline-grid">
+                    <!-- Time axis header -->
+                    <div class="time-axis">
+                        @for (hour of timeLabels(); track hour) {
+                            <div class="time-label">{{ hour }}</div>
+                        }
+                    </div>
+
+                    <!-- Room rows -->
+                    <div class="room-row">
+                        <div class="time-slots">
+                            @for (hour of timeLabels(); track hour) {
+                                <div class="time-slot"></div>
+                            }
+                        </div>
+                    </div>
+                    <div class="room-row">
+                        <div class="time-slots">
+                            @for (hour of timeLabels(); track hour) {
+                                <div class="time-slot"></div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     } @else {
         <p>Event not found</p>
     }
