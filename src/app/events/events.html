@@ -22,14 +22,17 @@
     }
   </form>
 
-  @if (events().length > 0)
+  @if (events())
   {
       <div class="event-list">
         <h3>Created Events</h3>
         <ul>
           @for (event of events(); track event.date) {
-            <strong>{{ event.title }}</strong> — {{ event.date }}
-            ({{ event.startHour }} - {{ event.endHour }})
+            <li>
+              <a [routerLink]="['/', event.date]">
+                <strong>{{ event.title }}</strong> — {{ event.date }} ({{ event.startHour }} - {{ event.endHour }})
+              </a>
+            </li>
           }
         </ul>
       </div>

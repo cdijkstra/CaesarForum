@@ -1,6 +1,8 @@
-import { Component, signal, computed } from '@angular/core';
+import {Component, signal, computed, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import {EventsService} from "../event-service/event-service";
 
 function isWholeOrHalfHour(time: string): boolean {
   // time format: "HH:mm"
@@ -13,11 +15,13 @@ function isWholeOrHalfHour(time: string): boolean {
 @Component({
   selector: 'app-events',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './events.html',
   styleUrl: './events.scss'
 })
 export class EventsComponent {
+  private eventsService = inject(EventsService);
+
   // Default values for form fields
   readonly DEFAULT_TITLE = 'My Event';
   readonly DEFAULT_DATE = new Date().toISOString().slice(0, 10);
@@ -30,7 +34,7 @@ export class EventsComponent {
   endHour = signal(this.DEFAULT_END_HOUR);
 
   // Signal for created events
-  events = signal<Array<{ title: string; date: string; startHour: string; endHour: string }>>([]);
+  events = this.eventsService.events;
 
   // Computed signal for form validity
   isFormValid = computed(() => {
@@ -55,21 +59,17 @@ export class EventsComponent {
   // Handle form submission
   onSubmit() {
     if (this.isFormValid()) {
-      this.events.update(events => [
-        ...events,
-        {
-          title: this.title(),
-          date: this.date(),
-          startHour: this.startHour(),
-          endHour: this.endHour()
-        }
-      ]);
+      this.eventsService.addEvent({
+        title: this.title(),
+        date: this.date(),
+        startHour: this.startHour(),
+        endHour: this.endHour()
+      });
       // Reset form fields to default values
-      this.title.set(this.DEFAULT_TITLE);
+      this.title.set('')
       this.date.set(this.DEFAULT_DATE);
       this.startHour.set(this.DEFAULT_START_HOUR);
       this.endHour.set(this.DEFAULT_END_HOUR);
-      console.log("done")
     }
   }
 
