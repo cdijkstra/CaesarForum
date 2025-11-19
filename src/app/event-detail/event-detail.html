@@ -80,6 +80,16 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="sessionType">Event Type:</label>
+                            <textarea
+                                    id="sessionType"
+                                    [value]="sessionType()"
+                                    (input)="sessionType.set($any($event.target).value)"
+                                    required
+                            ></textarea>
+                        </div>
+
+                        <div class="form-group">
                             <label for="eventAbstract">Abstract:</label>
                             <textarea
                                     id="eventAbstract"

@@ -1,4 +1,5 @@
 
+
 import {Component, computed, inject, input, signal} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +15,9 @@ interface RoomSelection {
   startSlot: TimeSlot | null;
   endSlot: TimeSlot | null;
 }
+
+type SessionType = 'Presentation' | 'Brainstorm' | 'Workshop' | 'Feedback';
+
 
 @Component({
   selector: 'app-event-detail',
@@ -38,6 +42,11 @@ export class EventDetailComponent {
   showForm = signal(false);
   eventName = signal('');
   eventAbstract = signal('');
+  sessionType = signal<SessionType>('Presentation');
+
+  // Session type options - make it readonly and accessible
+  readonly sessionTypes: SessionType[] = ['Presentation', 'Brainstorm', 'Workshop', 'Feedback'];
+
 
   // Generate time labels based on start and end times
   timeLabels = computed(() => {
@@ -124,7 +133,8 @@ export class EventDetailComponent {
       startTime: selection.startSlot.time,
       endTime: this.getNextTimeSlot(selection.endSlot.time),
       name: this.eventName(),
-      abstract: this.eventAbstract()
+      abstract: this.eventAbstract(),
+      sessionType: this.sessionType()
     });
 
     // Reset form
@@ -136,9 +146,10 @@ export class EventDetailComponent {
     this.showForm.set(false);
     this.eventName.set('');
     this.eventAbstract.set('');
+    this.sessionType.set('Presentation');
   }
 
-  protected getNextTimeSlot(time: string): string {
+  getNextTimeSlot(time: string): string {
     const minutes = this.parseTime(time) + 30;
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
