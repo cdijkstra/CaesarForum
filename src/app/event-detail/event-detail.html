@@ -1,0 +1,11 @@
+<div class="event-detail">
+    @if (event(); as evt) {
+        <h2>Event Details</h2>
+        <p><strong>Title:</strong> {{ evt.title }}</p>
+        <p><strong>Date:</strong> {{ evt.date }}</p>
+        <p><strong>Start Hour:</strong> {{ evt.startHour }}</p>
+        <p><strong>End Hour:</strong> {{ evt.endHour }}</p>
+    } @else {
+        <p>Event not found</p>
+    }
+</div>
