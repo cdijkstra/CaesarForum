@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {EventsService, TimelineSession} from "../event-service/event-service";
 import {Router} from "@angular/router";
+import { UserService } from '../services/user.service';
 
 interface TimeSlot {
   time: string;
@@ -27,6 +28,11 @@ type SessionType = 'Presentation' | 'Brainstorm' | 'Workshop' | 'Feedback';
 export class EventDetailComponent {
   private router = inject(Router);
   private eventsService = inject(EventsService);
+  private userService = inject(UserService);
+
+  // Get current user and automatically use their name as presenter
+  currentUser = this.userService.currentUser;
+  presenter = computed(() => this.currentUser().name);
 
 
   public routeEvents() {
@@ -51,6 +57,7 @@ export class EventDetailComponent {
   eventName = signal('');
   eventAbstract = signal('');
   sessionType = signal<SessionType>('Presentation');
+  // presenter is now computed from currentUser above
 
   // Read-only session view
   selectedSession = signal<TimelineSession | null>(null);
@@ -156,7 +163,8 @@ export class EventDetailComponent {
       endTime: this.getNextTimeSlot(selection.endSlot.time),
       name: this.eventName(),
       abstract: this.eventAbstract(),
-      sessionType: this.sessionType()
+      sessionType: this.sessionType(),
+      presenter: this.presenter() // Include presenter
     });
 
     // Reset form
@@ -209,6 +217,7 @@ export class EventDetailComponent {
     this.eventName.set('');
     this.eventAbstract.set('');
     this.sessionType.set('Presentation');
+    // presenter is automatically computed from currentUser, no need to reset
   }
 
   getNextTimeSlot(time: string): string {

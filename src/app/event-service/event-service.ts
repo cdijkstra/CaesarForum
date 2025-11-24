@@ -17,6 +17,7 @@ export interface TimelineSession {
   name: string;
   abstract: string;
   sessionType: string;
+  presenter: string; // Added presenter field
 }
 
 @Injectable({
