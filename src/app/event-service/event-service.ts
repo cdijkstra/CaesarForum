@@ -21,6 +21,10 @@ export class EventsService {
     this.eventsSignal.update(events => [...events, event]);
   }
 
+  deleteEvent(index: number) {
+    this.eventsSignal.update(events => events.filter((_, i) => i !== index));
+  }
+
   getEventByDate(date: string): Event | undefined {
     console.log(date);
     return this.eventsSignal().find(event => event.date === date);

@@ -1,114 +1,293 @@
-<div class="event-detail">
-    @if (event(); as evt) {
-        <h2>Event Details</h2>
-        <p><strong>Title:</strong> {{ evt.title }}</p>
-        <p><strong>Date:</strong> {{ evt.date }}</p>
-        <p><strong>Start Hour:</strong> {{ evt.startHour }}</p>
-        <p><strong>End Hour:</strong> {{ evt.endHour }}</p>
-
-        <div class="timeline-container">
-            <h3>Timeline</h3>
-            <p class="instruction">Click and drag on a room's timeline to select a time period</p>
-
-            <div class="timeline">
-                <!-- Room labels on the left -->
-                <div class="room-labels">
-                    <div class="room-label">Room X</div>
-                    <div class="room-label">Room Y</div>
+<div class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-8 px-4">
+    <div class="max-w-6xl mx-auto">
+        @if (event(); as evt) {
+            <!-- Header Section -->
+            <div class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 p-8 mb-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a1 1 0 011-1h6a1 1 0 011 1v4m-6 0h6m-6 0V7m6 0V7M5 7h14l-1 12H6L5 7z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        Event Details
+                    </h2>
                 </div>
 
-                <!-- Timeline grid -->
-                <div class="timeline-grid">
-                    <!-- Time axis header -->
-                    <div class="time-axis">
-                        @for (hour of timeLabels(); track hour) {
-                            <div class="time-label">{{ hour }}</div>
-                        }
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-6 text-white shadow-lg transform hover:scale-105 transition-transform duration-200">
+                        <div class="flex items-center gap-3 mb-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                            </svg>
+                            <span class="text-sm font-medium text-blue-100">Title</span>
+                        </div>
+                        <p class="text-lg font-semibold">{{ evt.title }}</p>
                     </div>
 
-                    <!-- Room X row -->
-                    <div class="room-row">
-                        <div class="time-slots">
-                            @for (hour of timeLabels(); track $index) {
-                                <div
-                                        class="time-slot"
-                                        [class.selected]="isSlotSelected('Room X', $index)"
+                    <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-2xl p-6 text-white shadow-lg transform hover:scale-105 transition-transform duration-200">
+                        <div class="flex items-center gap-3 mb-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a1 1 0 011-1h6a1 1 0 011 1v4m-8 0v10a2 2 0 002 2h8a2 2 0 002-2V7H8z"/>
+                            </svg>
+                            <span class="text-sm font-medium text-emerald-100">Date</span>
+                        </div>
+                        <p class="text-lg font-semibold">{{ evt.date }}</p>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl p-6 text-white shadow-lg transform hover:scale-105 transition-transform duration-200">
+                        <div class="flex items-center gap-3 mb-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span class="text-sm font-medium text-orange-100">Start</span>
+                        </div>
+                        <p class="text-lg font-semibold">{{ evt.startHour }}</p>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg transform hover:scale-105 transition-transform duration-200">
+                        <div class="flex items-center gap-3 mb-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span class="text-sm font-medium text-purple-100">End</span>
+                        </div>
+                        <p class="text-lg font-semibold">{{ evt.endHour }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Section -->
+            <div class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 p-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-800">Timeline</h3>
+                </div>
+
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 mb-6">
+                    <p class="text-gray-700 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span class="font-medium">Click and drag on a room's timeline to select a time period</span>
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                    <!-- Room labels on the left -->
+                    <div class="flex">
+                        <div class="w-32 bg-gradient-to-b from-gray-50 to-gray-100 border-r border-gray-200">
+                            <div class="h-16 border-b border-gray-200"></div>
+                            <div class="h-20 flex items-center justify-center border-b border-gray-200">
+                                <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-lg font-semibold shadow-md">
+                                    Room X
+                                </div>
+                            </div>
+                            <div class="h-20 flex items-center justify-center">
+                                <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-4 py-2 rounded-lg font-semibold shadow-md">
+                                    Room Y
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Timeline grid -->
+                        <div class="flex-1 overflow-x-auto">
+                            <!-- Time axis header -->
+                            <div class="h-16 flex border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
+                                @for (hour of timeLabels(); track hour) {
+                                    <div class="min-w-20 px-2 py-4 text-center border-r border-gray-200 last:border-r-0">
+                                        <span class="text-sm font-semibold text-gray-700 bg-white px-2 py-1 rounded-lg shadow-sm">
+                                            {{ hour }}
+                                        </span>
+                                    </div>
+                                }
+                            </div>
+
+                            <!-- Room X row -->
+                            <div class="h-20 flex border-b border-gray-200 bg-blue-50/30">
+                                @for (hour of timeLabels(); track $index) {
+                                    <div
+                                        class="min-w-20 h-full border-r border-gray-200 last:border-r-0 cursor-pointer transition-all duration-200 hover:bg-blue-100 hover:shadow-inner relative group"
+                                        [class]="isSlotSelected('Room X', $index) ? 'bg-gradient-to-r from-blue-400 to-blue-500 shadow-lg' : 'bg-white hover:bg-blue-50'"
                                         (mousedown)="onSlotMouseDown('Room X', hour, $index)"
                                         (mouseenter)="onSlotMouseEnter('Room X', hour, $index)"
                                         (mouseup)="onSlotMouseUp()"
-                                ></div>
-                            }
-                        </div>
-                    </div>
+                                    >
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            @if (isSlotSelected('Room X', $index)) {
+                                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            </div>
 
-                    <!-- Room Y row -->
-                    <div class="room-row">
-                        <div class="time-slots">
-                            @for (hour of timeLabels(); track $index) {
-                                <div
-                                        class="time-slot"
-                                        [class.selected]="isSlotSelected('Room Y', $index)"
+                            <!-- Room Y row -->
+                            <div class="h-20 flex bg-emerald-50/30">
+                                @for (hour of timeLabels(); track $index) {
+                                    <div
+                                        class="min-w-20 h-full border-r border-gray-200 last:border-r-0 cursor-pointer transition-all duration-200 hover:bg-emerald-100 hover:shadow-inner relative group"
+                                        [class]="isSlotSelected('Room Y', $index) ? 'bg-gradient-to-r from-emerald-400 to-emerald-500 shadow-lg' : 'bg-white hover:bg-emerald-50'"
                                         (mousedown)="onSlotMouseDown('Room Y', hour, $index)"
                                         (mouseenter)="onSlotMouseEnter('Room Y', hour, $index)"
                                         (mouseup)="onSlotMouseUp()"
-                                ></div>
-                            }
+                                    >
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            @if (isSlotSelected('Room Y', $index)) {
+                                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Event Creation Form -->
-        @if (showForm() && selection(); as sel) {
-            <div class="event-form-overlay">
-                <div class="event-form">
-                    <h3>Create Event</h3>
-                    <p><strong>Room:</strong> {{ sel.room }}</p>
-                    <p><strong>Time:</strong> {{ sel.startSlot?.time }} - {{ getNextTimeSlot(sel.endSlot?.time || '') }}</p>
+            <!-- Event Creation Form -->
+            @if (showForm() && selection(); as sel) {
+                <div class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+                    <div class="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-gray-100">
+                        <div class="p-8">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                                    Create Event
+                                </h3>
+                            </div>
 
-                    <form (ngSubmit)="submitEvent()">
-                        <div class="form-group">
-                            <label for="eventName">Event Name:</label>
-                            <input
-                                    id="eventName"
-                                    type="text"
-                                    [value]="eventName()"
-                                    (input)="eventName.set($any($event.target).value)"
-                                    required
-                            />
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                        </svg>
+                                        <span class="text-sm font-medium text-blue-700">Room</span>
+                                    </div>
+                                    <p class="text-lg font-semibold text-blue-800">{{ sel.room }}</p>
+                                </div>
+
+                                <div class="bg-gradient-to-r from-emerald-50 to-green-50 rounded-2xl p-4">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        <span class="text-sm font-medium text-emerald-700">Time</span>
+                                    </div>
+                                    <p class="text-lg font-semibold text-emerald-800">
+                                        {{ sel.startSlot?.time }} - {{ getNextTimeSlot(sel.endSlot?.time || '') }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <form (ngSubmit)="submitEvent()" class="space-y-6">
+                                <div class="space-y-2">
+                                    <label for="eventName" class="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                                        </svg>
+                                        Event Name
+                                    </label>
+                                    <input
+                                        id="eventName"
+                                        type="text"
+                                        [value]="eventName()"
+                                        (input)="eventName.set($any($event.target).value)"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-4 focus:ring-purple-100 focus:border-purple-500 transition-all duration-200 bg-white/80 backdrop-blur-sm"
+                                        placeholder="Enter event name..."
+                                    />
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label for="sessionType" class="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                                        </svg>
+                                        Event Type
+                                    </label>
+                                    <textarea
+                                        id="sessionType"
+                                        [value]="sessionType()"
+                                        (input)="sessionType.set($any($event.target).value)"
+                                        required
+                                        rows="2"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-4 focus:ring-purple-100 focus:border-purple-500 transition-all duration-200 bg-white/80 backdrop-blur-sm resize-none"
+                                        placeholder="Describe the type of event..."
+                                    ></textarea>
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label for="eventAbstract" class="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                        </svg>
+                                        Abstract
+                                    </label>
+                                    <textarea
+                                        id="eventAbstract"
+                                        rows="4"
+                                        [value]="eventAbstract()"
+                                        (input)="eventAbstract.set($any($event.target).value)"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-4 focus:ring-purple-100 focus:border-purple-500 transition-all duration-200 bg-white/80 backdrop-blur-sm resize-none"
+                                        placeholder="Provide a detailed description of the event..."
+                                    ></textarea>
+                                </div>
+
+                                <div class="flex gap-4 pt-6">
+                                    <button
+                                        type="submit"
+                                        [disabled]="!eventName() || !eventAbstract()"
+                                        class="flex-1 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                                    >
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                        </svg>
+                                        Create Event
+                                    </button>
+                                    <button
+                                        type="button"
+                                        (click)="cancelSelection()"
+                                        class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                                    >
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                        </svg>
+                                        Cancel
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-
-                        <div class="form-group">
-                            <label for="sessionType">Event Type:</label>
-                            <textarea
-                                    id="sessionType"
-                                    [value]="sessionType()"
-                                    (input)="sessionType.set($any($event.target).value)"
-                                    required
-                            ></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="eventAbstract">Abstract:</label>
-                            <textarea
-                                    id="eventAbstract"
-                                    rows="4"
-                                    [value]="eventAbstract()"
-                                    (input)="eventAbstract.set($any($event.target).value)"
-                                    required
-                            ></textarea>
-                        </div>
-
-                        <div class="form-actions">
-                            <button type="submit" [disabled]="!eventName() || !eventAbstract()">Create Event</button>
-                            <button type="button" (click)="cancelSelection()">Cancel</button>
-                        </div>
-                    </form>
+                    </div>
+                </div>
+            }
+        } @else {
+            <div class="min-h-screen flex items-center justify-center">
+                <div class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 p-12 text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-red-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Event Not Found</h2>
+                    <p class="text-gray-600">The requested event could not be located.</p>
                 </div>
             </div>
         }
-    } @else {
-        <p>Event not found</p>
-    }
+    </div>
 </div>
+<button (click)="routeEvents()" class="fixed bottom-4 right-4 bg-blue-500 text-white px-4 py-2 rounded-full shadow-lg">Evenementen</button>

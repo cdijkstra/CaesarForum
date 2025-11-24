@@ -1,7 +1,7 @@
 import {Component, signal, computed, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import {EventsService} from "../event-service/event-service";
 
 function isWholeOrHalfHour(time: string): boolean {
@@ -9,6 +9,7 @@ function isWholeOrHalfHour(time: string): boolean {
   const match = /^\d{2}:(\d{2})$/.exec(time);
   if (!match) return false;
   const minutes = Number(match[1]);
+  console.log(minutes);
   return minutes === 0 || minutes === 30;
 }
 
@@ -21,6 +22,7 @@ function isWholeOrHalfHour(time: string): boolean {
 })
 export class EventsComponent {
   private eventsService = inject(EventsService);
+  private router = inject(Router);
 
   // Default values for form fields
   readonly DEFAULT_TITLE = 'My Event';
@@ -72,6 +74,17 @@ export class EventsComponent {
       this.endHour.set(this.DEFAULT_END_HOUR);
     }
   }
+
+  deleteEvent(index: number) {
+    if (confirm('Weet je zeker dat je dit evenement wilt verwijderen?')) {
+      this.eventsService.deleteEvent(index);
+    }
+  }
+
+  navigateToEvent(date: string) {
+    this.router.navigate(['/', date]);
+  }
+
 
   setTitle(value: string) { this.title.set(value); }
   setDate(value: string) { this.date.set(value); }

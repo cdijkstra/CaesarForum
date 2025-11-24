@@ -4,6 +4,7 @@ import {Component, computed, inject, input, signal} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {EventsService} from "../event-service/event-service";
+import {Router} from "@angular/router";
 
 interface TimeSlot {
   time: string;
@@ -27,7 +28,13 @@ type SessionType = 'Presentation' | 'Brainstorm' | 'Workshop' | 'Feedback';
   styleUrl: './event-detail.scss'
 })
 export class EventDetailComponent {
+  private router = inject(Router);
   private eventsService = inject(EventsService);
+
+  public routeEvents() {
+    this.router.navigate(['/events']);
+  }
+
 
   date = input.required<string>();
 
