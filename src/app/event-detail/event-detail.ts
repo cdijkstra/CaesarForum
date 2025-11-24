@@ -194,20 +194,53 @@ export class EventDetailComponent {
   getSlotClass(room: string, index: number): string {
     const session = this.getSessionAtSlot(room, index);
     if (session) {
-      // Slot has a session - use session colors
-      return room === 'Room X'
-        ? 'bg-blue-600 hover:bg-blue-700 shadow-lg'
-        : 'bg-emerald-600 hover:bg-emerald-700 shadow-lg';
+      // Slot has a session - use muted session colors
+      switch(room) {
+        case 'Room X':
+          return 'bg-slate-500 hover:bg-slate-600 shadow-sm';
+        case 'Room Y':
+          return 'bg-slate-600 hover:bg-slate-700 shadow-sm';
+        case 'Room Z':
+          return 'bg-stone-500 hover:bg-stone-600 shadow-sm';
+        case 'Room A':
+          return 'bg-stone-600 hover:bg-stone-700 shadow-sm';
+        case 'Room B':
+          return 'bg-gray-600 hover:bg-gray-700 shadow-sm';
+        default:
+          return 'bg-gray-500 hover:bg-gray-600 shadow-sm';
+      }
     } else if (this.isSlotSelected(room, index)) {
-      // Slot is selected for new session
-      return room === 'Room X'
-        ? 'bg-gradient-to-r from-blue-400 to-blue-500 shadow-lg'
-        : 'bg-gradient-to-r from-emerald-400 to-emerald-500 shadow-lg';
+      // Slot is selected for new session - subtle selection colors
+      switch(room) {
+        case 'Room X':
+          return 'bg-slate-200 border-2 border-slate-400 shadow-sm';
+        case 'Room Y':
+          return 'bg-slate-200 border-2 border-slate-500 shadow-sm';
+        case 'Room Z':
+          return 'bg-stone-200 border-2 border-stone-400 shadow-sm';
+        case 'Room A':
+          return 'bg-stone-200 border-2 border-stone-500 shadow-sm';
+        case 'Room B':
+          return 'bg-gray-200 border-2 border-gray-400 shadow-sm';
+        default:
+          return 'bg-gray-200 border-2 border-gray-400 shadow-sm';
+      }
     } else {
-      // Empty slot
-      return room === 'Room X'
-        ? 'bg-white hover:bg-blue-50'
-        : 'bg-white hover:bg-emerald-50';
+      // Empty slot - very subtle hover effects
+      switch(room) {
+        case 'Room X':
+          return 'bg-white hover:bg-slate-50';
+        case 'Room Y':
+          return 'bg-white hover:bg-slate-50';
+        case 'Room Z':
+          return 'bg-white hover:bg-stone-50';
+        case 'Room A':
+          return 'bg-white hover:bg-stone-50';
+        case 'Room B':
+          return 'bg-white hover:bg-gray-50';
+        default:
+          return 'bg-white hover:bg-gray-50';
+      }
     }
   }
 

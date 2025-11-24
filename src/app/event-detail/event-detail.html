@@ -6,12 +6,12 @@
                 <!-- Navigation -->
                 <div class="flex items-center justify-between mb-6">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center">
+                        <div class="w-12 h-12 bg-slate-500 rounded-2xl flex items-center justify-center">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a1 1 0 011-1h6a1 1 0 011 1v4m-6 0h6m-6 0V7m6 0V7M5 7h14l-1 12H6L5 7z"/>
                             </svg>
                         </div>
-                        <h2 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        <h2 class="text-4xl font-bold text-slate-700">
                             Event Details
                         </h2>
                     </div>
@@ -24,49 +24,49 @@
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
                         </svg>
-                        Back to Events
+                        Terug naar Events
                     </button>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-6 text-white shadow-lg transform hover:scale-105 transition-transform duration-200">
+                    <div class="bg-slate-100 border border-slate-200 rounded-2xl p-6 text-slate-700 shadow-sm transform hover:scale-102 transition-transform duration-200">
                         <div class="flex items-center gap-3 mb-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
                             </svg>
-                            <span class="text-sm font-medium text-blue-100">Title</span>
+                            <span class="text-sm font-medium text-slate-600">Title</span>
                         </div>
-                        <p class="text-lg font-semibold">{{ evt.title }}</p>
+                        <p class="text-lg font-semibold text-slate-800">{{ evt.title }}</p>
                     </div>
 
-                    <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-2xl p-6 text-white shadow-lg transform hover:scale-105 transition-transform duration-200">
+                    <div class="bg-stone-100 border border-stone-200 rounded-2xl p-6 text-stone-700 shadow-sm transform hover:scale-102 transition-transform duration-200">
                         <div class="flex items-center gap-3 mb-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-stone-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a1 1 0 011-1h6a1 1 0 011 1v4m-8 0v10a2 2 0 002 2h8a2 2 0 002-2V7H8z"/>
                             </svg>
-                            <span class="text-sm font-medium text-emerald-100">Date</span>
+                            <span class="text-sm font-medium text-stone-600">Date</span>
                         </div>
-                        <p class="text-lg font-semibold">{{ evt.date }}</p>
+                        <p class="text-lg font-semibold text-stone-800">{{ evt.date }}</p>
                     </div>
 
-                    <div class="bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl p-6 text-white shadow-lg transform hover:scale-105 transition-transform duration-200">
+                    <div class="bg-gray-100 border border-gray-200 rounded-2xl p-6 text-gray-700 shadow-sm transform hover:scale-102 transition-transform duration-200">
                         <div class="flex items-center gap-3 mb-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
-                            <span class="text-sm font-medium text-orange-100">Start</span>
+                            <span class="text-sm font-medium text-gray-600">Start</span>
                         </div>
-                        <p class="text-lg font-semibold">{{ evt.startHour }}</p>
+                        <p class="text-lg font-semibold text-gray-800">{{ evt.startHour }}</p>
                     </div>
 
-                    <div class="bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg transform hover:scale-105 transition-transform duration-200">
+                    <div class="bg-slate-100 border border-slate-200 rounded-2xl p-6 text-slate-700 shadow-sm transform hover:scale-102 transition-transform duration-200">
                         <div class="flex items-center gap-3 mb-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
-                            <span class="text-sm font-medium text-purple-100">End</span>
+                            <span class="text-sm font-medium text-slate-600">End</span>
                         </div>
-                        <p class="text-lg font-semibold">{{ evt.endHour }}</p>
+                        <p class="text-lg font-semibold text-slate-800">{{ evt.endHour }}</p>
                     </div>
                 </div>
             </div>
@@ -74,17 +74,17 @@
             <!-- Timeline Section -->
             <div class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 p-8">
                 <div class="flex items-center gap-4 mb-6">
-                    <div class="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center">
+                    <div class="w-10 h-10 bg-slate-500 rounded-xl flex items-center justify-center">
                         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
                         </svg>
                     </div>
-                    <h3 class="text-3xl font-bold text-gray-800">Timeline</h3>
+                    <h3 class="text-3xl font-bold text-slate-700">Timeline</h3>
                 </div>
 
-                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 mb-6">
-                    <p class="text-gray-700 flex items-center gap-2">
-                        <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 mb-6">
+                    <p class="text-slate-700 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                         <span class="font-medium">Click and drag on a room's timeline to select a time period</span>
@@ -92,18 +92,38 @@
                 </div>
 
                 <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-                    <!-- Room labels on the left -->
                     <div class="flex">
+                        <!-- Room labels on the left -->
                         <div class="w-32 bg-gradient-to-b from-gray-50 to-gray-100 border-r border-gray-200">
                             <div class="h-16 border-b border-gray-200"></div>
                             <div class="h-24 flex items-center justify-center border-b border-gray-200">
-                                <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-lg font-semibold shadow-md">
-                                    Room X
+                                <div class="bg-slate-500 text-white px-3 py-2 rounded-lg font-medium shadow-sm text-center">
+                                    <div class="text-sm font-semibold">Room X</div>
+                                    <div class="text-xs opacity-90">Max: 6 people</div>
+                                </div>
+                            </div>
+                            <div class="h-24 flex items-center justify-center border-b border-gray-200">
+                                <div class="bg-slate-600 text-white px-3 py-2 rounded-lg font-medium shadow-sm text-center">
+                                    <div class="text-sm font-semibold">Room Y</div>
+                                    <div class="text-xs opacity-90">Max: 8 people</div>
+                                </div>
+                            </div>
+                            <div class="h-24 flex items-center justify-center border-b border-gray-200">
+                                <div class="bg-stone-500 text-white px-3 py-2 rounded-lg font-medium shadow-sm text-center">
+                                    <div class="text-sm font-semibold">Room Z</div>
+                                    <div class="text-xs opacity-90">Max: 10 people</div>
+                                </div>
+                            </div>
+                            <div class="h-24 flex items-center justify-center border-b border-gray-200">
+                                <div class="bg-stone-600 text-white px-3 py-2 rounded-lg font-medium shadow-sm text-center">
+                                    <div class="text-sm font-semibold">Room A</div>
+                                    <div class="text-xs opacity-90">Max: 12 people</div>
                                 </div>
                             </div>
                             <div class="h-24 flex items-center justify-center">
-                                <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-4 py-2 rounded-lg font-semibold shadow-md">
-                                    Room Y
+                                <div class="bg-gray-600 text-white px-3 py-2 rounded-lg font-medium shadow-sm text-center">
+                                    <div class="text-sm font-semibold">Room B</div>
+                                    <div class="text-xs opacity-90">Max: 6 people</div>
                                 </div>
                             </div>
                         </div>
@@ -122,10 +142,10 @@
                             </div>
 
                             <!-- Room X row -->
-                            <div class="h-24 flex border-b border-gray-200 bg-blue-50/30">
+                            <div class="h-24 flex border-b border-gray-200 bg-slate-50/40">
                                 @for (hour of timeLabels(); track $index) {
                                     <div
-                                        class="min-w-20 h-full border-r border-gray-200 last:border-r-0 cursor-pointer transition-all duration-200 hover:bg-blue-100 hover:shadow-inner relative group"
+                                        class="min-w-20 h-full border-r border-gray-200 last:border-r-0 cursor-pointer transition-all duration-200 hover:bg-slate-100 hover:shadow-inner relative group"
                                         [class]="getSlotClass('Room X', $index)"
                                         (mousedown)="onSlotMouseDown('Room X', hour, $index)"
                                         (mouseenter)="onSlotMouseEnter('Room X', hour, $index)"
@@ -133,15 +153,15 @@
                                     >
                                         <div class="absolute inset-0 flex items-center justify-center p-1">
                                             @if (getSessionAtSlot('Room X', $index); as session) {
-                                                <div class="bg-blue-600 text-white rounded px-2 py-1 text-xs font-medium text-center w-full h-full flex flex-col items-center justify-center shadow-md">
+                                                <div class="bg-slate-500 text-white rounded px-2 py-1 text-xs font-medium text-center w-full h-full flex flex-col items-center justify-center shadow-sm">
                                                     <div class="font-semibold leading-tight">{{ session.name }}</div>
                                                     @if (session.presenter) {
-                                                        <div class="text-blue-100 text-xs leading-tight">door {{ session.presenter }}</div>
+                                                        <div class="text-slate-200 text-xs leading-tight">door {{ session.presenter }}</div>
                                                     }
                                                 </div>
                                             } @else if (isSlotSelected('Room X', $index)) {
-                                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                                                <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                                                 </svg>
                                             }
                                         </div>
@@ -150,10 +170,10 @@
                             </div>
 
                             <!-- Room Y row -->
-                            <div class="h-24 flex bg-emerald-50/30">
+                            <div class="h-24 flex border-b border-gray-200 bg-slate-50/40">
                                 @for (hour of timeLabels(); track $index) {
                                     <div
-                                        class="min-w-20 h-full border-r border-gray-200 last:border-r-0 cursor-pointer transition-all duration-200 hover:bg-emerald-100 hover:shadow-inner relative group"
+                                        class="min-w-20 h-full border-r border-gray-200 last:border-r-0 cursor-pointer transition-all duration-200 hover:bg-slate-100 hover:shadow-inner relative group"
                                         [class]="getSlotClass('Room Y', $index)"
                                         (mousedown)="onSlotMouseDown('Room Y', hour, $index)"
                                         (mouseenter)="onSlotMouseEnter('Room Y', hour, $index)"
@@ -161,15 +181,99 @@
                                     >
                                         <div class="absolute inset-0 flex items-center justify-center p-1">
                                             @if (getSessionAtSlot('Room Y', $index); as session) {
-                                                <div class="bg-emerald-600 text-white rounded px-2 py-1 text-xs font-medium text-center w-full h-full flex flex-col items-center justify-center shadow-md">
+                                                <div class="bg-slate-600 text-white rounded px-2 py-1 text-xs font-medium text-center w-full h-full flex flex-col items-center justify-center shadow-sm">
                                                     <div class="font-semibold leading-tight">{{ session.name }}</div>
                                                     @if (session.presenter) {
-                                                        <div class="text-emerald-100 text-xs leading-tight">door {{ session.presenter }}</div>
+                                                        <div class="text-slate-200 text-xs leading-tight">door {{ session.presenter }}</div>
                                                     }
                                                 </div>
                                             } @else if (isSlotSelected('Room Y', $index)) {
-                                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                                                <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            <!-- Room Z row -->
+                            <div class="h-24 flex border-b border-gray-200 bg-stone-50/40">
+                                @for (hour of timeLabels(); track $index) {
+                                    <div
+                                        class="min-w-20 h-full border-r border-gray-200 last:border-r-0 cursor-pointer transition-all duration-200 hover:bg-stone-100 hover:shadow-inner relative group"
+                                        [class]="getSlotClass('Room Z', $index)"
+                                        (mousedown)="onSlotMouseDown('Room Z', hour, $index)"
+                                        (mouseenter)="onSlotMouseEnter('Room Z', hour, $index)"
+                                        (mouseup)="onSlotMouseUp()"
+                                    >
+                                        <div class="absolute inset-0 flex items-center justify-center p-1">
+                                            @if (getSessionAtSlot('Room Z', $index); as session) {
+                                                <div class="bg-stone-500 text-white rounded px-2 py-1 text-xs font-medium text-center w-full h-full flex flex-col items-center justify-center shadow-sm">
+                                                    <div class="font-semibold leading-tight">{{ session.name }}</div>
+                                                    @if (session.presenter) {
+                                                        <div class="text-stone-200 text-xs leading-tight">door {{ session.presenter }}</div>
+                                                    }
+                                                </div>
+                                            } @else if (isSlotSelected('Room Z', $index)) {
+                                                <svg class="w-5 h-5 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            <!-- Room A row -->
+                            <div class="h-24 flex border-b border-gray-200 bg-stone-50/40">
+                                @for (hour of timeLabels(); track $index) {
+                                    <div
+                                        class="min-w-20 h-full border-r border-gray-200 last:border-r-0 cursor-pointer transition-all duration-200 hover:bg-stone-100 hover:shadow-inner relative group"
+                                        [class]="getSlotClass('Room A', $index)"
+                                        (mousedown)="onSlotMouseDown('Room A', hour, $index)"
+                                        (mouseenter)="onSlotMouseEnter('Room A', hour, $index)"
+                                        (mouseup)="onSlotMouseUp()"
+                                    >
+                                        <div class="absolute inset-0 flex items-center justify-center p-1">
+                                            @if (getSessionAtSlot('Room A', $index); as session) {
+                                                <div class="bg-stone-600 text-white rounded px-2 py-1 text-xs font-medium text-center w-full h-full flex flex-col items-center justify-center shadow-sm">
+                                                    <div class="font-semibold leading-tight">{{ session.name }}</div>
+                                                    @if (session.presenter) {
+                                                        <div class="text-stone-200 text-xs leading-tight">door {{ session.presenter }}</div>
+                                                    }
+                                                </div>
+                                            } @else if (isSlotSelected('Room A', $index)) {
+                                                <svg class="w-5 h-5 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            <!-- Room B row -->
+                            <div class="h-24 flex bg-gray-50/40">
+                                @for (hour of timeLabels(); track $index) {
+                                    <div
+                                        class="min-w-20 h-full border-r border-gray-200 last:border-r-0 cursor-pointer transition-all duration-200 hover:bg-gray-100 hover:shadow-inner relative group"
+                                        [class]="getSlotClass('Room B', $index)"
+                                        (mousedown)="onSlotMouseDown('Room B', hour, $index)"
+                                        (mouseenter)="onSlotMouseEnter('Room B', hour, $index)"
+                                        (mouseup)="onSlotMouseUp()"
+                                    >
+                                        <div class="absolute inset-0 flex items-center justify-center p-1">
+                                            @if (getSessionAtSlot('Room B', $index); as session) {
+                                                <div class="bg-gray-600 text-white rounded px-2 py-1 text-xs font-medium text-center w-full h-full flex flex-col items-center justify-center shadow-sm">
+                                                    <div class="font-semibold leading-tight">{{ session.name }}</div>
+                                                    @if (session.presenter) {
+                                                        <div class="text-gray-200 text-xs leading-tight">door {{ session.presenter }}</div>
+                                                    }
+                                                </div>
+                                            } @else if (isSlotSelected('Room B', $index)) {
+                                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                                                 </svg>
                                             }
                                         </div>
@@ -179,7 +283,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
             <!-- Event Creation Form -->
             @if (showForm() && selection(); as sel) {
