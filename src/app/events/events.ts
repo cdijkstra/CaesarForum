@@ -17,8 +17,7 @@ function isWholeOrHalfHour(time: string): boolean {
   selector: 'app-events',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
-  templateUrl: './events.html',
-  styleUrl: './events.scss'
+  templateUrl: './events.html'
 })
 export class EventsComponent {
   private eventsService = inject(EventsService);

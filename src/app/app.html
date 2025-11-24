@@ -1,3 +1,33 @@
-<main class="main">
+<!-- Fixed Header with User Profile -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo/Title -->
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 bg-gradient-to-r from-violet-500 to-purple-600 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a1 1 0 011-1h6a1 1 0 011 1v4m-6 0h6m-6 0V7m6 0V7M5 7h14l-1 12H6L5 7z"/>
+          </svg>
+        </div>
+        <h1 class="text-xl font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
+          {{ title() }}
+        </h1>
+      </div>
+
+      <!-- User Profile in Upper Right -->
+      <div class="flex items-center">
+        <app-user-profile
+          [user]="currentUser"
+          size="sm"
+          [showBorder]="true"
+          class="cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200"
+        />
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content with Top Padding to Account for Fixed Header -->
+<main class="pt-16 min-h-screen">
   <router-outlet />
 </main>

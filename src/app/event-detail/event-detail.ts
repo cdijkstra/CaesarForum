@@ -1,9 +1,7 @@
-
-
 import {Component, computed, inject, input, signal} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {EventsService} from "../event-service/event-service";
+import {EventsService, TimelineSession} from "../event-service/event-service";
 import {Router} from "@angular/router";
 
 interface TimeSlot {
@@ -24,12 +22,12 @@ type SessionType = 'Presentation' | 'Brainstorm' | 'Workshop' | 'Feedback';
   selector: 'app-event-detail',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './event-detail.html',
-  styleUrl: './event-detail.scss'
+  templateUrl: './event-detail.html'
 })
 export class EventDetailComponent {
   private router = inject(Router);
   private eventsService = inject(EventsService);
+
 
   public routeEvents() {
     this.router.navigate(['/events']);
@@ -41,6 +39,9 @@ export class EventDetailComponent {
   // Get the event from the service based on the date
   event = computed(() => this.eventsService.getEventByDate(this.date()));
 
+  // Get sessions for this event
+  sessions = computed(() => this.eventsService.getSessionsByEventDate(this.date()));
+
   // Selection state
   selection = signal<RoomSelection | null>(null);
   isSelecting = signal(false);
@@ -50,6 +51,10 @@ export class EventDetailComponent {
   eventName = signal('');
   eventAbstract = signal('');
   sessionType = signal<SessionType>('Presentation');
+
+  // Read-only session view
+  selectedSession = signal<TimelineSession | null>(null);
+  showSessionDetails = signal(false);
 
   // Session type options - make it readonly and accessible
   readonly sessionTypes: SessionType[] = ['Presentation', 'Brainstorm', 'Workshop', 'Feedback'];
@@ -81,6 +86,14 @@ export class EventDetailComponent {
   }
 
   onSlotMouseDown(room: string, time: string, index: number) {
+    // Check if there's already a session at this slot
+    const existingSession = this.getSessionAtSlot(room, index);
+    if (existingSession) {
+      this.showSessionDetails.set(true);
+      this.selectedSession.set(existingSession);
+      return;
+    }
+
     this.isSelecting.set(true);
     this.selection.set({
       room,
@@ -135,7 +148,9 @@ export class EventDetailComponent {
     const selection = this.selection();
     if (!selection || !selection.startSlot || !selection.endSlot) return;
 
-    console.log('Event created:', {
+    // Save session to service
+    this.eventsService.addTimelineSession({
+      eventDate: this.date(),
       room: selection.room,
       startTime: selection.startSlot.time,
       endTime: this.getNextTimeSlot(selection.endSlot.time),
@@ -146,6 +161,46 @@ export class EventDetailComponent {
 
     // Reset form
     this.cancelSelection();
+  }
+
+  getSessionAtSlot(room: string, index: number): TimelineSession | undefined {
+    const timeLabel = this.timeLabels()[index];
+    return this.sessions().find(session =>
+      session.room === room &&
+      this.isTimeInSession(timeLabel, session)
+    );
+  }
+
+  private isTimeInSession(time: string, session: TimelineSession): boolean {
+    const timeMinutes = this.parseTime(time);
+    const startMinutes = this.parseTime(session.startTime);
+    const endMinutes = this.parseTime(session.endTime);
+    return timeMinutes >= startMinutes && timeMinutes < endMinutes;
+  }
+
+  closeSessionDetails() {
+    this.showSessionDetails.set(false);
+    this.selectedSession.set(null);
+  }
+
+  getSlotClass(room: string, index: number): string {
+    const session = this.getSessionAtSlot(room, index);
+    if (session) {
+      // Slot has a session - use session colors
+      return room === 'Room X'
+        ? 'bg-blue-600 hover:bg-blue-700 shadow-lg'
+        : 'bg-emerald-600 hover:bg-emerald-700 shadow-lg';
+    } else if (this.isSlotSelected(room, index)) {
+      // Slot is selected for new session
+      return room === 'Room X'
+        ? 'bg-gradient-to-r from-blue-400 to-blue-500 shadow-lg'
+        : 'bg-gradient-to-r from-emerald-400 to-emerald-500 shadow-lg';
+    } else {
+      // Empty slot
+      return room === 'Room X'
+        ? 'bg-white hover:bg-blue-50'
+        : 'bg-white hover:bg-emerald-50';
+    }
   }
 
   cancelSelection() {
