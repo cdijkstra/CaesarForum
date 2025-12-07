@@ -1,8 +1,9 @@
-import {Component, signal, computed, inject} from '@angular/core';
+import { Component, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import {EventsService} from "../event-service/event-service";
+import { EventsService } from '../../services/events.service';
+import { UserService } from '../../services/user.service';
 
 function isWholeOrHalfHour(time: string): boolean {
   // time format: "HH:mm"
@@ -17,17 +18,21 @@ function isWholeOrHalfHour(time: string): boolean {
   selector: 'app-events',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
-  templateUrl: './events.html'
+  templateUrl: './events.html',
 })
 export class EventsComponent {
   private eventsService = inject(EventsService);
   private router = inject(Router);
+  private userService = inject(UserService);
+
+  // Authentication state
+  isAuthenticated = this.userService.isAuthenticated;
 
   // Default values for form fields
   readonly DEFAULT_TITLE = 'My Event';
   readonly DEFAULT_DATE = new Date().toISOString().slice(0, 10);
-  readonly DEFAULT_START_HOUR = '09:00';
-  readonly DEFAULT_END_HOUR = '10:00';
+  readonly DEFAULT_START_HOUR = '18:00';
+  readonly DEFAULT_END_HOUR = '21:00';
 
   title = signal(this.DEFAULT_TITLE);
   date = signal(this.DEFAULT_DATE);
@@ -36,6 +41,7 @@ export class EventsComponent {
 
   // Signal for created events
   events = this.eventsService.events;
+  eventsLoading = this.eventsService.eventsLoading;
 
   // Computed signal for form validity
   isFormValid = computed(() => {
@@ -59,24 +65,42 @@ export class EventsComponent {
 
   // Handle form submission
   onSubmit() {
+    if (!this.isAuthenticated()) {
+      alert('Please log in to create events.');
+      return;
+    }
+
     if (this.isFormValid()) {
-      this.eventsService.addEvent({
-        title: this.title(),
-        date: this.date(),
-        startHour: this.startHour(),
-        endHour: this.endHour()
-      });
+      this.eventsService
+        .addEvent({
+          title: this.title(),
+          date: this.date(),
+          startHour: this.startHour(),
+          endHour: this.endHour(),
+        })
+        .catch((error) => {
+          console.error('Error adding event:', error);
+          alert('Er is een fout opgetreden bij het toevoegen van het evenement.');
+        });
       // Reset form fields to default values
-      this.title.set('')
+      this.title.set('');
       this.date.set(this.DEFAULT_DATE);
       this.startHour.set(this.DEFAULT_START_HOUR);
       this.endHour.set(this.DEFAULT_END_HOUR);
     }
   }
 
-  deleteEvent(index: number) {
+  deleteEvent(eventId: string) {
+    if (!this.isAuthenticated()) {
+      alert('Please log in to delete events.');
+      return;
+    }
+
     if (confirm('Weet je zeker dat je dit evenement wilt verwijderen?')) {
-      this.eventsService.deleteEvent(index);
+      this.eventsService.deleteEvent(eventId).catch((error) => {
+        console.error('Error deleting event:', error);
+        alert('Er is een fout opgetreden bij het verwijderen van het evenement.');
+      });
     }
   }
 
@@ -84,9 +108,16 @@ export class EventsComponent {
     this.router.navigate(['/', date]);
   }
 
-
-  setTitle(value: string) { this.title.set(value); }
-  setDate(value: string) { this.date.set(value); }
-  setStartHour(value: string) { this.startHour.set(value); }
-  setEndHour(value: string) { this.endHour.set(value); }
+  setTitle(value: string) {
+    this.title.set(value);
+  }
+  setDate(value: string) {
+    this.date.set(value);
+  }
+  setStartHour(value: string) {
+    this.startHour.set(value);
+  }
+  setEndHour(value: string) {
+    this.endHour.set(value);
+  }
 }

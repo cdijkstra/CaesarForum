@@ -1,9 +1,10 @@
-import {Component, computed, inject, input, signal} from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {EventsService, TimelineSession} from "../event-service/event-service";
-import {Router} from "@angular/router";
-import { UserService } from '../services/user.service';
+import { EventsService } from '../../services/events.service';
+import { TimelineSession } from '../../models/timelineSession.model';
+import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 interface TimeSlot {
   time: string;
@@ -18,12 +19,11 @@ interface RoomSelection {
 
 type SessionType = 'Presentation' | 'Brainstorm' | 'Workshop' | 'Feedback';
 
-
 @Component({
   selector: 'app-event-detail',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './event-detail.html'
+  templateUrl: './event-detail.html',
 })
 export class EventDetailComponent {
   private router = inject(Router);
@@ -32,13 +32,11 @@ export class EventDetailComponent {
 
   // Get current user and automatically use their name as presenter
   currentUser = this.userService.currentUser;
-  presenter = computed(() => this.currentUser().name);
-
+  presenter = computed(() => this.currentUser()?.name || '');
 
   public routeEvents() {
     this.router.navigate(['/events']);
   }
-
 
   date = input.required<string>();
 
@@ -47,6 +45,8 @@ export class EventDetailComponent {
 
   // Get sessions for this event
   sessions = computed(() => this.eventsService.getSessionsByEventDate(this.date()));
+  timelineSessionsLoading = this.eventsService.timelineSessionsLoading;
+  eventsLoading = this.eventsService.eventsLoading;
 
   // Selection state
   selection = signal<RoomSelection | null>(null);
@@ -65,7 +65,6 @@ export class EventDetailComponent {
 
   // Session type options - make it readonly and accessible
   readonly sessionTypes: SessionType[] = ['Presentation', 'Brainstorm', 'Workshop', 'Feedback'];
-
 
   // Generate time labels based on start and end times
   timeLabels = computed(() => {
@@ -105,7 +104,7 @@ export class EventDetailComponent {
     this.selection.set({
       room,
       startSlot: { time, index },
-      endSlot: { time, index }
+      endSlot: { time, index },
     });
   }
 
@@ -116,7 +115,7 @@ export class EventDetailComponent {
     if (currentSelection && currentSelection.room === room && currentSelection.startSlot) {
       this.selection.set({
         ...currentSelection,
-        endSlot: { time, index }
+        endSlot: { time, index },
       });
     }
   }
@@ -132,7 +131,7 @@ export class EventDetailComponent {
       this.selection.set({
         room: selection.room,
         startSlot: { time: this.timeLabels()[start], index: start },
-        endSlot: { time: this.timeLabels()[end], index: end }
+        endSlot: { time: this.timeLabels()[end], index: end },
       });
 
       this.showForm.set(true);
@@ -156,16 +155,21 @@ export class EventDetailComponent {
     if (!selection || !selection.startSlot || !selection.endSlot) return;
 
     // Save session to service
-    this.eventsService.addTimelineSession({
-      eventDate: this.date(),
-      room: selection.room,
-      startTime: selection.startSlot.time,
-      endTime: this.getNextTimeSlot(selection.endSlot.time),
-      name: this.eventName(),
-      abstract: this.eventAbstract(),
-      sessionType: this.sessionType(),
-      presenter: this.presenter() // Include presenter
-    });
+    this.eventsService
+      .addTimelineSession({
+        eventDate: this.date(),
+        room: selection.room,
+        startTime: selection.startSlot.time,
+        endTime: this.getNextTimeSlot(selection.endSlot.time),
+        name: this.eventName(),
+        abstract: this.eventAbstract(),
+        sessionType: this.sessionType(),
+        presenter: this.presenter(), // Include presenter
+      })
+      .catch((error) => {
+        console.error('Error adding timeline session:', error);
+        alert('Er is een fout opgetreden bij het toevoegen van de sessie.');
+      });
 
     // Reset form
     this.cancelSelection();
@@ -173,9 +177,9 @@ export class EventDetailComponent {
 
   getSessionAtSlot(room: string, index: number): TimelineSession | undefined {
     const timeLabel = this.timeLabels()[index];
-    return this.sessions().find(session =>
-      session.room === room &&
-      this.isTimeInSession(timeLabel, session)
+    return this.sessions().find(
+      (session: TimelineSession) =>
+        session.room === room && this.isTimeInSession(timeLabel, session)
     );
   }
 
@@ -205,9 +209,7 @@ export class EventDetailComponent {
         : 'bg-gradient-to-r from-emerald-400 to-emerald-500 shadow-lg';
     } else {
       // Empty slot
-      return room === 'Room X'
-        ? 'bg-white hover:bg-blue-50'
-        : 'bg-white hover:bg-emerald-50';
+      return room === 'Room X' ? 'bg-white hover:bg-blue-50' : 'bg-white hover:bg-emerald-50';
     }
   }
 

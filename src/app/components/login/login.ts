@@ -1,0 +1,60 @@
+import { Component, signal, inject, output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { UserService } from '../../services/user.service';
+
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './login.html',
+})
+export class LoginComponent {
+  private userService = inject(UserService);
+
+  // Output event to close modal
+  close = output<void>();
+
+  // Form state
+  email = signal('');
+  password = signal('');
+  isLoading = signal(false);
+  errorMessage = signal<string | null>(null);
+
+  // Handle form submission
+  async onSubmit() {
+    const emailValue = this.email().trim();
+    const passwordValue = this.password().trim();
+
+    if (!emailValue || !passwordValue) {
+      this.errorMessage.set('Please enter both email and password');
+      return;
+    }
+
+    this.isLoading.set(true);
+    this.errorMessage.set(null);
+
+    const result = await this.userService.login(emailValue, passwordValue);
+
+    if (result.success) {
+      this.close.emit();
+      // Reset form
+      this.email.set('');
+      this.password.set('');
+    } else {
+      this.errorMessage.set(result.error || 'Login failed');
+    }
+
+    this.isLoading.set(false);
+  }
+
+  // Handle close button or overlay click
+  onClose() {
+    this.close.emit();
+  }
+
+  // Prevent modal from closing when clicking inside
+  stopPropagation(event: Event) {
+    event.stopPropagation();
+  }
+}
