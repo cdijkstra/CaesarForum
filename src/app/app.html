@@ -5,18 +5,24 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <!-- Logo/Title -->
-      <div class="flex items-center gap-3">
-        <div
-          class="w-10 h-10 bg-gradient-to-r from-violet-500 to-purple-600 rounded-lg flex items-center justify-center"
-        >
-          <img src="assets/amphitheatre-white.png" alt="Caesar Forum Logo" class="w-8 h-8" />
+      <a
+        href="/"
+        style="text-decoration: none; color: inherit; cursor: pointer"
+        class="transition-all duration-200 transform hover:scale-105"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 bg-gradient-to-r from-violet-500 to-purple-600 rounded-lg flex items-center justify-center transition-all duration-200 hover:shadow-md hover:from-violet-600 hover:to-purple-700"
+          >
+            <img src="assets/amphitheatre-white.png" alt="Caesar Forum Logo" class="w-8 h-8" />
+          </div>
+          <h1
+            class="text-xl font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent"
+          >
+            {{ title() }}
+          </h1>
         </div>
-        <h1
-          class="text-xl font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent"
-        >
-          {{ title() }}
-        </h1>
-      </div>
+      </a>
 
       <!-- User Profile / Login in Upper Right -->
       <div class="flex items-center gap-3">
