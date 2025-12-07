@@ -41,19 +41,19 @@
       <h2
         class="text-3xl font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent"
       >
-        Login
+        Inloggen
       </h2>
-      <p class="text-gray-600 mt-2">Sign in to create and manage events</p>
+      <p class="text-gray-600 mt-2">Log in om evenementen aan te maken en te beheren</p>
     </div>
 
     <!-- Test Credentials Info -->
     <div class="bg-violet-50 border border-violet-200 rounded-xl p-4 mb-6">
       <p class="text-sm text-violet-800 font-medium">
-        <span class="font-semibold">Testing Credentials:</span>
+        <span class="font-semibold">Testgegevens:</span>
         <br />
-        <span class="font-semibold">Email:</span> tester@test.nl
+        <span class="font-semibold">E-mail:</span> tester@test.nl
         <br />
-        <span class="font-semibold">Password:</span> Test123$
+        <span class="font-semibold">Wachtwoord:</span> Test123$
       </p>
     </div>
 
@@ -61,7 +61,7 @@
     <form (ngSubmit)="onSubmit()" class="space-y-4">
       <!-- Email Field -->
       <div>
-        <label for="email" class="block text-sm font-semibold text-gray-700 mb-2"> Email </label>
+        <label for="email" class="block text-sm font-semibold text-gray-700 mb-2"> E-mail </label>
         <input
           id="email"
           type="email"
@@ -69,7 +69,7 @@
           (input)="email.set($event.target.value)"
           required
           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-4 focus:ring-violet-100 focus:border-violet-500 transition-all duration-200 bg-white"
-          placeholder="Enter your email"
+          placeholder="Voer je e-mailadres in"
           [disabled]="isLoading()"
         />
       </div>
@@ -77,7 +77,7 @@
       <!-- Password Field -->
       <div>
         <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">
-          Password
+          Wachtwoord
         </label>
         <input
           id="password"
@@ -86,7 +86,7 @@
           (input)="password.set($event.target.value)"
           required
           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-4 focus:ring-violet-100 focus:border-violet-500 transition-all duration-200 bg-white"
-          placeholder="Enter your password"
+          placeholder="Voer je wachtwoord in"
           [disabled]="isLoading()"
         />
       </div>
@@ -123,9 +123,9 @@
         <div
           class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"
         ></div>
-        <span>Logging in...</span>
+        <span>Inloggen...</span>
         } @else {
-        <span>Login</span>
+        <span>Inloggen</span>
         }
       </button>
     </form>

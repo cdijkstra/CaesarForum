@@ -29,7 +29,7 @@ export class EventsComponent {
   isAuthenticated = this.userService.isAuthenticated;
 
   // Default values for form fields
-  readonly DEFAULT_TITLE = 'My Event';
+  readonly DEFAULT_TITLE = 'Mijn Evenement';
   readonly DEFAULT_DATE = new Date().toISOString().slice(0, 10);
   readonly DEFAULT_START_HOUR = '18:00';
   readonly DEFAULT_END_HOUR = '21:00';
@@ -58,7 +58,7 @@ export class EventsComponent {
   // Computed signal for error message
   errorMessage = computed(() => {
     if (!isWholeOrHalfHour(this.startHour()) || !isWholeOrHalfHour(this.endHour())) {
-      return 'Start and end hours must be at whole or half hours (:00 or :30).';
+      return 'Start- en eindtijden moeten op hele of halve uren zijn (:00 of :30).';
     }
     return '';
   });
@@ -66,7 +66,7 @@ export class EventsComponent {
   // Handle form submission
   onSubmit() {
     if (!this.isAuthenticated()) {
-      alert('Please log in to create events.');
+      alert('Log in om evenementen aan te maken.');
       return;
     }
 
@@ -92,7 +92,7 @@ export class EventsComponent {
 
   deleteEvent(eventId: string) {
     if (!this.isAuthenticated()) {
-      alert('Please log in to delete events.');
+      alert('Log in om evenementen te verwijderen.');
       return;
     }
 

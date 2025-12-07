@@ -1,29 +1,40 @@
 <div class="flex items-center" [class]="getSizeClasses().container">
   <!-- Profile Picture / Avatar -->
-  <div class="relative" [class]="showBorder() ? 'ring-2 ring-white ring-offset-2 ring-offset-gray-100 rounded-full' : ''">
+  <div
+    class="relative"
+    [class]="
+      showBorder() ? 'ring-2 ring-white ring-offset-2 ring-offset-gray-100 rounded-full' : ''
+    "
+  >
     @if (user().profilePicture) {
-      <!-- User has profile picture -->
-      <img
-        [src]="user().profilePicture"
-        [alt]="user().name + ' profile picture'"
-        [class]="getSizeClasses().avatar + ' rounded-full object-cover shadow-lg'"
-        [class.hidden]="imageError()"
-        (error)="handleImageError()"
-      />
-      <!-- Fallback avatar (shown when image error occurs) -->
-      <div
-        [class]="getSizeClasses().avatar + ' rounded-full bg-gradient-to-r from-violet-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-lg'"
-        [class.hidden]="!imageError()"
-      >
-        {{ getInitials(user().name) }}
-      </div>
+    <!-- User has profile picture -->
+    <img
+      [src]="user().profilePicture"
+      [alt]="user().name + ' profielfoto'"
+      [class]="getSizeClasses().avatar + ' rounded-full object-cover shadow-lg'"
+      [class.hidden]="imageError()"
+      (error)="handleImageError()"
+    />
+    <!-- Fallback avatar (shown when image error occurs) -->
+    <div
+      [class]="
+        getSizeClasses().avatar +
+        ' rounded-full bg-gradient-to-r from-violet-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-lg'
+      "
+      [class.hidden]="!imageError()"
+    >
+      {{ getInitials(user().name) }}
+    </div>
     } @else {
-      <!-- Default avatar with initials -->
-      <div
-        [class]="getSizeClasses().avatar + ' rounded-full bg-gradient-to-r from-violet-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-lg'"
-      >
-        {{ getInitials(user().name) }}
-      </div>
+    <!-- Default avatar with initials -->
+    <div
+      [class]="
+        getSizeClasses().avatar +
+        ' rounded-full bg-gradient-to-r from-violet-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-lg'
+      "
+    >
+      {{ getInitials(user().name) }}
+    </div>
     }
   </div>
 

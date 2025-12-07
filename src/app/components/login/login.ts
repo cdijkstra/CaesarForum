@@ -27,7 +27,7 @@ export class LoginComponent {
     const passwordValue = this.password().trim();
 
     if (!emailValue || !passwordValue) {
-      this.errorMessage.set('Please enter both email and password');
+      this.errorMessage.set('Voer zowel e-mailadres als wachtwoord in');
       return;
     }
 
@@ -42,7 +42,7 @@ export class LoginComponent {
       this.email.set('');
       this.password.set('');
     } else {
-      this.errorMessage.set(result.error || 'Login failed');
+      this.errorMessage.set(result.error || 'Inloggen mislukt');
     }
 
     this.isLoading.set(false);
