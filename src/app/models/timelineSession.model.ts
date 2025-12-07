@@ -2,7 +2,6 @@ import { BaseModel } from 'pocketbase';
 
 export interface TimelineSession extends BaseModel {
   id: string;
-  eventDate: string;
   startTime: string;
   endTime: string;
   name: string;
