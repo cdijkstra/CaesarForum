@@ -6,6 +6,9 @@ import { TimelineSession } from '../../models/timelineSession.model';
 import { Room } from '../../models/room.model';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 interface TimeSlot {
   time: string;
@@ -23,7 +26,7 @@ type SessionType = 'Presentation' | 'Brainstorm' | 'Workshop' | 'Feedback';
 @Component({
   selector: 'app-event-detail',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatFormFieldModule, MatSelectModule, MatOptionModule],
   templateUrl: './event-detail.html',
 })
 export class EventDetailComponent {
