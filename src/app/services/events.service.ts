@@ -2,6 +2,7 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { TimelineSession } from '../models/timelineSession.model';
 import { Event } from '../models/event.model';
+import { Room } from '../models/room.model';
 import { PocketbaseService } from './pocketbase.service';
 
 @Injectable({
@@ -11,18 +12,23 @@ export class EventsService {
   private pocketbaseService = inject(PocketbaseService);
   private eventsSignal = signal<Event[]>([]);
   private timelineSessionsSignal = signal<TimelineSession[]>([]);
+  private roomsSignal = signal<Room[]>([]);
   private eventsLoadingSignal = signal<boolean>(true);
   private timelineSessionsLoadingSignal = signal<boolean>(true);
+  private roomsLoadingSignal = signal<boolean>(true);
 
-  // Read-only access to events and sessions
+  // Read-only access to events, sessions, and rooms
   events = this.eventsSignal.asReadonly();
   timelineSessions = this.timelineSessionsSignal.asReadonly();
+  rooms = this.roomsSignal.asReadonly();
   eventsLoading = this.eventsLoadingSignal.asReadonly();
   timelineSessionsLoading = this.timelineSessionsLoadingSignal.asReadonly();
+  roomsLoading = this.roomsLoadingSignal.asReadonly();
 
   constructor() {
     this.loadEvents();
     this.loadTimelineSessions();
+    this.loadRooms();
   }
 
   async loadEvents(): Promise<void> {
@@ -46,6 +52,18 @@ export class EventsService {
       console.error('Error loading timeline sessions:', error);
     } finally {
       this.timelineSessionsLoadingSignal.set(false);
+    }
+  }
+
+  async loadRooms(): Promise<void> {
+    try {
+      this.roomsLoadingSignal.set(true);
+      const rooms = await this.pocketbaseService.getAll<Room>('rooms');
+      this.roomsSignal.set(rooms);
+    } catch (error) {
+      console.error('Error loading rooms:', error);
+    } finally {
+      this.roomsLoadingSignal.set(false);
     }
   }
 
@@ -88,6 +106,10 @@ export class EventsService {
 
   getSessionsByEventDate(eventDate: string): TimelineSession[] {
     return this.timelineSessionsSignal().filter((session) => session.eventDate === eventDate);
+  }
+
+  getSessionsByEventId(eventId: string): TimelineSession[] {
+    return this.timelineSessionsSignal().filter((session) => session.event === eventId);
   }
 
   async getSessionById(id: string): Promise<TimelineSession | undefined> {

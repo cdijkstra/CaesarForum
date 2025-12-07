@@ -186,20 +186,20 @@
         <div class="flex">
           <div class="w-32 bg-gradient-to-b from-gray-50 to-gray-100 border-r border-gray-200">
             <div class="h-16 border-b border-gray-200"></div>
-            <div class="h-24 flex items-center justify-center border-b border-gray-200">
+            @for (room of rooms(); track room.id) {
+            <div
+              class="h-24 flex items-center justify-center"
+              [class.border-b]="!$last"
+              [class.border-gray-200]="!$last"
+            >
               <div
-                class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-lg font-semibold shadow-md"
+                [class]="getRoomLabelClass($index)"
+                class="text-white px-4 py-2 rounded-lg font-semibold shadow-md"
               >
-                Room X
+                {{ room.name }}
               </div>
             </div>
-            <div class="h-24 flex items-center justify-center">
-              <div
-                class="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-4 py-2 rounded-lg font-semibold shadow-md"
-              >
-                Room Y
-              </div>
-            </div>
+            }
           </div>
 
           <!-- Timeline grid -->
@@ -219,29 +219,39 @@
               }
             </div>
 
-            <!-- Room X row -->
-            <div class="h-24 flex border-b border-gray-200 bg-blue-50/30">
+            <!-- Room rows -->
+            @for (room of rooms(); track room.id) {
+            <div
+              class="h-24 flex"
+              [class.border-b]="!$last"
+              [class.border-gray-200]="!$last"
+              [class]="getRoomRowClass($index)"
+            >
               @for (hour of timeLabels(); track $index) {
               <div
-                class="min-w-20 h-full border-r border-gray-200 last:border-r-0 cursor-pointer transition-all duration-200 hover:bg-blue-100 hover:shadow-inner relative group"
-                [class]="getSlotClass('Room X', $index)"
-                (mousedown)="onSlotMouseDown('Room X', hour, $index)"
-                (mouseenter)="onSlotMouseEnter('Room X', hour, $index)"
+                class="min-w-20 h-full border-r border-gray-200 last:border-r-0 cursor-pointer transition-all duration-200 relative group"
+                [class]="getSlotClass(room.id, $index)"
+                (mousedown)="onSlotMouseDown(room.id, hour, $index)"
+                (mouseenter)="onSlotMouseEnter(room.id, hour, $index)"
                 (mouseup)="onSlotMouseUp()"
               >
                 <div class="absolute inset-0 flex items-center justify-center p-1">
-                  @if (getSessionAtSlot('Room X', $index); as session) {
+                  @if (getSessionAtSlot(room.id, $index); as session) {
                   <div
-                    class="bg-blue-600 text-white rounded px-2 py-1 text-xs font-medium text-center w-full h-full flex flex-col items-center justify-center shadow-md"
+                    [class]="getSessionClass(session.id)"
+                    class="text-white rounded px-2 py-1 text-xs font-medium text-center w-full h-full flex flex-col items-center justify-center shadow-md"
                   >
                     <div class="font-semibold leading-tight">{{ session.name }}</div>
                     @if (session.presenter) {
-                    <div class="text-blue-100 text-xs leading-tight">
+                    <div
+                      [class]="getSessionPresenterClass(session.id)"
+                      class="text-xs leading-tight"
+                    >
                       door {{ session.presenter }}
                     </div>
                     }
                   </div>
-                  } @else if (isSlotSelected('Room X', $index)) {
+                  } @else if (isSlotSelected(room.id, $index)) {
                   <svg
                     class="w-6 h-6 text-white"
                     fill="none"
@@ -260,48 +270,7 @@
               </div>
               }
             </div>
-
-            <!-- Room Y row -->
-            <div class="h-24 flex bg-emerald-50/30">
-              @for (hour of timeLabels(); track $index) {
-              <div
-                class="min-w-20 h-full border-r border-gray-200 last:border-r-0 cursor-pointer transition-all duration-200 hover:bg-emerald-100 hover:shadow-inner relative group"
-                [class]="getSlotClass('Room Y', $index)"
-                (mousedown)="onSlotMouseDown('Room Y', hour, $index)"
-                (mouseenter)="onSlotMouseEnter('Room Y', hour, $index)"
-                (mouseup)="onSlotMouseUp()"
-              >
-                <div class="absolute inset-0 flex items-center justify-center p-1">
-                  @if (getSessionAtSlot('Room Y', $index); as session) {
-                  <div
-                    class="bg-emerald-600 text-white rounded px-2 py-1 text-xs font-medium text-center w-full h-full flex flex-col items-center justify-center shadow-md"
-                  >
-                    <div class="font-semibold leading-tight">{{ session.name }}</div>
-                    @if (session.presenter) {
-                    <div class="text-emerald-100 text-xs leading-tight">
-                      door {{ session.presenter }}
-                    </div>
-                    }
-                  </div>
-                  } @else if (isSlotSelected('Room Y', $index)) {
-                  <svg
-                    class="w-6 h-6 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="3"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  }
-                </div>
-              </div>
-              }
-            </div>
+            }
           </div>
         </div>
       </div>
@@ -355,7 +324,7 @@
                 </svg>
                 <span class="text-sm font-medium text-blue-700">Room</span>
               </div>
-              <p class="text-lg font-semibold text-blue-800">{{ sel.room }}</p>
+              <p class="text-lg font-semibold text-blue-800">{{ getRoomName(sel.room) }}</p>
             </div>
 
             <div class="bg-gradient-to-r from-emerald-50 to-green-50 rounded-2xl p-4">
@@ -633,7 +602,7 @@
                   </svg>
                   <span class="text-sm font-medium text-blue-700">Room</span>
                 </div>
-                <p class="text-lg font-semibold text-blue-800">{{ session.room }}</p>
+                <p class="text-lg font-semibold text-blue-800">{{ getRoomName(session.room) }}</p>
               </div>
 
               <div class="bg-gradient-to-r from-emerald-50 to-green-50 rounded-2xl p-4">
