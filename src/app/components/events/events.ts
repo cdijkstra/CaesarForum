@@ -29,12 +29,11 @@ export class EventsComponent {
   isAuthenticated = this.userService.isAuthenticated;
 
   // Default values for form fields
-  readonly DEFAULT_TITLE = 'Mijn Evenement';
   readonly DEFAULT_DATE = new Date().toISOString().slice(0, 10);
   readonly DEFAULT_START_HOUR = '18:00';
   readonly DEFAULT_END_HOUR = '21:00';
 
-  title = signal(this.DEFAULT_TITLE);
+  title = signal<string>('');
   date = signal(this.DEFAULT_DATE);
   startHour = signal(this.DEFAULT_START_HOUR);
   endHour = signal(this.DEFAULT_END_HOUR);
