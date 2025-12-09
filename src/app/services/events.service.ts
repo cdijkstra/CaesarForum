@@ -104,6 +104,10 @@ export class EventsService {
     }
   }
 
+  getSessionsByEventDate(eventDate: string): TimelineSession[] {
+    return this.timelineSessionsSignal().filter((session) => session.eventDate === eventDate);
+  }
+
   getSessionsByEventId(eventId: string): TimelineSession[] {
     return this.timelineSessionsSignal().filter((session) => session.event === eventId);
   }
