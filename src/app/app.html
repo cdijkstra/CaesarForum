@@ -37,19 +37,79 @@
           />
           <button
             (click)="logout()"
-            class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors duration-200 border border-violet-300 hover:border-violet-400"
+            class="flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg"
             title="Uitloggen"
           >
-            Uitloggen
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="flex-shrink-0"
+            >
+              <path
+                d="M13.4767 21.2448H8.34067C7.04877 21.3045 5.78536 20.8527 4.82407 19.9876C3.86278 19.1224 3.28099 17.9134 3.2047 16.6224V7.37762C3.28099 6.08659 3.86278 4.87757 4.82407 4.01241C5.78536 3.14724 7.04877 2.69559 8.34067 2.75524H13.4767"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M20.7953 12H7.44174"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-miterlimit="10"
+                stroke-linecap="round"
+              />
+              <path
+                d="M16.0833 17.136L20.4874 12.7319C20.6802 12.5371 20.7884 12.2742 20.7884 12C20.7884 11.7259 20.6802 11.4629 20.4874 11.2681L16.0833 6.86404"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span>Uitloggen</span>
           </button>
         </div>
         } @else {
         <!-- Login Button -->
         <button
           (click)="openLogin()"
-          class="px-4 py-2 bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg"
+          class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg"
         >
-          Inloggen
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="flex-shrink-0"
+          >
+            <path
+              d="M10.9728 2.75524H16.1088C17.4008 2.69559 18.6641 3.14724 19.6254 4.01241C20.5867 4.87757 21.1685 6.08659 21.2448 7.37762V16.6224C21.1685 17.9134 20.5867 19.1224 19.6254 19.9876C18.6641 20.8527 17.4008 21.3045 16.1088 21.2448H10.9728"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M16.1088 12H2.75522"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-miterlimit="10"
+              stroke-linecap="round"
+            />
+            <path
+              d="M11.3965 17.136L15.8006 12.7319C15.9935 12.5371 16.1017 12.2741 16.1017 12C16.1017 11.7259 15.9935 11.4629 15.8006 11.2681L11.3965 6.86401"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span>Inloggen</span>
         </button>
         }
       </div>

@@ -1,26 +1,43 @@
 # CaesarForum
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.7.
+Caesar Forum is onze plek om evenementsdatums aan te maken, en vervolgens voor alle beschikbare ruimtes sessies in te plannen. Zo houden we de Forum-dagen overzichtelijk!
+
+Dit project is gegenereerd met [Angular CLI](https://github.com/angular/angular-cli) versie 20.3.7.
+
+## Icons
+
+Voor icons gebruiken we: [Mage Icons](https://mageicons.com/)
+
+## Backend & Database
+
+Dit project gebruikt [PocketBase](https://pocketbase.io/) als backend en database. De PocketBase instance draait op [Pockethost](https://pockethost.io/): https://caesar-forum.pockethost.io
+
+## Authenticatie
+
+De applicatie ondersteunt authenticatie via:
+
+- **Microsoft Login**: OAuth2 authenticatie met een losse Entra ID Tenant
+- Standaard email/wachtwoord login
 
 ## Development server
 
-To start a local development server, run:
+Om een lokale development server te starten, voer uit:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Zodra de server draait, open je browser en navigeer naar `http://localhost:4200/`. De applicatie zal automatisch herladen wanneer je een van de bronbestanden wijzigt.
 
 ## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Angular CLI bevat krachtige code scaffolding tools. Om een nieuwe component te genereren, voer uit:
 
 ```bash
 ng generate component component-name
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Voor een complete lijst van beschikbare schematics (zoals `components`, `directives`, of `pipes`), voer uit:
 
 ```bash
 ng generate --help
@@ -28,32 +45,32 @@ ng generate --help
 
 ## Building
 
-To build the project run:
+Om het project te bouwen, voer uit:
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Dit compileert je project en slaat de build artifacts op in de `dist/` directory. Standaard optimaliseert de productie build je applicatie voor prestaties en snelheid.
 
-## Running unit tests
+## Unit tests uitvoeren
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Om unit tests uit te voeren met de [Karma](https://karma-runner.github.io) test runner, gebruik het volgende commando:
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+## End-to-end tests uitvoeren
 
-For end-to-end (e2e) testing, run:
+Voor end-to-end (e2e) testing, voer uit:
 
 ```bash
 ng e2e
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Angular CLI komt standaard niet met een end-to-end testing framework. Je kunt er een kiezen die bij je behoeften past.
 
-## Additional Resources
+## Aanvullende bronnen
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Voor meer informatie over het gebruik van Angular CLI, inclusief gedetailleerde commandoreferenties, bezoek de [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) pagina.

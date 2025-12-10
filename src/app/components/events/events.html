@@ -31,18 +31,60 @@
     >
       <div class="flex items-center gap-3 mb-8">
         <div
-          class="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center"
+          class="w-10 h-10 bg-gradient-to-r from-violet-500 to-violet-600 rounded-xl flex items-center justify-center"
         >
-          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
+              d="M17 4.625H7C4.79086 4.625 3 6.41586 3 8.625V17.375C3 19.5841 4.79086 21.375 7 21.375H17C19.2091 21.375 21 19.5841 21 17.375V8.625C21 6.41586 19.2091 4.625 17 4.625Z"
+              stroke="white"
+              stroke-width="1.5"
               stroke-linecap="round"
               stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+            />
+            <path
+              d="M3 9.625H21"
+              stroke="white"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M17 2.625V6.625"
+              stroke="white"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M7 2.625V6.625"
+              stroke="white"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.9945 12.4831V17.4831"
+              stroke="white"
+              stroke-width="1.5"
+              stroke-miterlimit="10"
+              stroke-linecap="round"
+            />
+            <path
+              d="M9.5 14.9885H14.5"
+              stroke="white"
+              stroke-width="1.5"
+              stroke-miterlimit="10"
+              stroke-linecap="round"
             />
           </svg>
         </div>
-        <h3 class="text-2xl font-bold text-gray-800">Nieuw Evenement Aanmaken</h3>
+        <h3 class="text-2xl font-bold text-gray-800">Evenement Aanmaken</h3>
       </div>
 
       <form (ngSubmit)="onSubmit()" class="space-y-6">
@@ -54,18 +96,28 @@
               class="block text-sm font-semibold text-gray-700 flex items-center gap-2"
             >
               <svg
-                class="w-4 h-4 text-gray-500"
-                fill="none"
-                stroke="currentColor"
+                width="24"
+                height="24"
                 viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
                 <path
+                  d="M17.5242 17.5242L14.8017 20.2467C14.5632 20.4855 14.2799 20.675 13.9681 20.8042C13.6563 20.9335 13.3221 21 12.9846 21C12.6471 21 12.3129 20.9335 12.0011 20.8042C11.6893 20.675 11.406 20.4855 11.1675 20.2467L4.13009 13.2093C3.40738 12.4875 3.0009 11.5083 3 10.4869V5.56839C3 4.88721 3.2706 4.23393 3.75226 3.75226C4.23393 3.2706 4.88721 3 5.56839 3H10.4869C11.5083 3.0009 12.4875 3.40738 13.2093 4.13009L20.2467 11.1675C20.4855 11.406 20.675 11.6893 20.8042 12.0011C20.9335 12.3129 21 12.6471 21 12.9846C21 13.3221 20.9335 13.6563 20.8042 13.9681C20.675 14.2799 20.4855 14.5632 20.2467 14.8017L17.5242 17.5242Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                />
+                <path
+                  d="M9.12561 11.694C10.5441 11.694 11.694 10.5441 11.694 9.12564C11.694 7.70716 10.5441 6.55725 9.12561 6.55725C7.70713 6.55725 6.55722 7.70716 6.55722 9.12564C6.55722 10.5441 7.70713 11.694 9.12561 11.694Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                 />
               </svg>
+
               Titel
             </label>
             <input
@@ -86,18 +138,84 @@
               class="block text-sm font-semibold text-gray-700 flex items-center gap-2"
             >
               <svg
-                class="w-4 h-4 text-gray-500"
-                fill="none"
-                stroke="currentColor"
+                width="24"
+                height="24"
                 viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
                 <path
+                  d="M17 4.625H7C4.79086 4.625 3 6.41586 3 8.625V17.375C3 19.5841 4.79086 21.375 7 21.375H17C19.2091 21.375 21 19.5841 21 17.375V8.625C21 6.41586 19.2091 4.625 17 4.625Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8 7V3a1 1 0 011-1h6a1 1 0 011 1v4m-8 0v10a2 2 0 002 2h8a2 2 0 002-2V7H8z"
+                />
+                <path
+                  d="M3 10.625H21"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M17 2.625V6.625"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M7 2.625V6.625"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M7.37509 14.1409H8.40287"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M15.5971 14.1409H16.6249"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M11.4862 14.1409H12.514"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M7.37509 17.2242H8.40287"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M15.5971 17.2242H16.6249"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M11.4862 17.2242H12.514"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                 />
               </svg>
+
               Datum
             </label>
             <input
@@ -117,18 +235,28 @@
               class="block text-sm font-semibold text-gray-700 flex items-center gap-2"
             >
               <svg
-                class="w-4 h-4 text-gray-500"
-                fill="none"
-                stroke="currentColor"
+                width="24"
+                height="24"
                 viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
                 <path
+                  d="M15.1719 15.1719L12.0053 12.0053V5.67194"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M12 21.5C17.2467 21.5 21.5 17.2467 21.5 12C21.5 6.7533 17.2467 2.5 12 2.5C6.7533 2.5 2.5 6.7533 2.5 12C2.5 17.2467 6.7533 21.5 12 21.5Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
+
               Starttijd
             </label>
             <input
@@ -149,16 +277,25 @@
               class="block text-sm font-semibold text-gray-700 flex items-center gap-2"
             >
               <svg
-                class="w-4 h-4 text-gray-500"
-                fill="none"
-                stroke="currentColor"
+                width="24"
+                height="24"
                 viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
                 <path
+                  d="M15.1719 15.1719L12.0053 12.0053V5.67194"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M12 21.5C17.2467 21.5 21.5 17.2467 21.5 12C21.5 6.7533 17.2467 2.5 12 2.5C6.7533 2.5 2.5 6.7533 2.5 12C2.5 17.2467 6.7533 21.5 12 21.5Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
               Eindtijd
@@ -204,7 +341,39 @@
             [disabled]="!isFormValid()"
             class="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg hover:shadow-xl flex items-center gap-3"
           >
-            Evenement Aanmaken
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 6.86108V17.1389"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M17.1391 12H6.86133"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <rect
+                x="2.75"
+                y="2.75"
+                width="18.5"
+                height="18.5"
+                rx="6"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+            </svg>
+
+            Aanmaken
           </button>
         </div>
       </form>
@@ -299,7 +468,7 @@
                 <div
                   class="w-12 h-12 bg-gradient-to-r from-violet-400 to-purple-500 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-md"
                 >
-                  {{ event.date | date : 'd' }}
+                  {{ i + 1 }}
                 </div>
                 <div>
                   <h4
@@ -311,12 +480,78 @@
                     <span
                       class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800"
                     >
-                      📅 {{ event.date | date : 'MMM d, y' }}
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M17 4.625H7C4.79086 4.625 3 6.41586 3 8.625V17.375C3 19.5841 4.79086 21.375 7 21.375H17C19.2091 21.375 21 19.5841 21 17.375V8.625C21 6.41586 19.2091 4.625 17 4.625Z"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M3 9.625H21"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M17 2.625V6.625"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M7 2.625V6.625"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M9 14.7143L10.6886 16.4029C10.748 16.463 10.8187 16.5107 10.8967 16.5433C10.9747 16.5759 11.0583 16.5927 11.1429 16.5927C11.2274 16.5927 11.3111 16.5759 11.389 16.5433C11.467 16.5107 11.5377 16.463 11.5972 16.4029L15 13"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+
+                      {{ event.date | date : 'MMM d, y' }}
                     </span>
                     <span
                       class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium bg-emerald-100 text-emerald-800"
                     >
-                      🕐 {{ event.startHour }} - {{ event.endHour }}
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M15.1719 15.1719L12.0053 12.0053V5.67194"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-miterlimit="10"
+                          stroke-linecap="round"
+                        />
+                        <path
+                          d="M12 21.5C17.2467 21.5 21.5 17.2467 21.5 12C21.5 6.7533 17.2467 2.5 12 2.5C6.7533 2.5 2.5 6.7533 2.5 12C2.5 17.2467 6.7533 21.5 12 21.5Z"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      {{ event.startHour }} - {{ event.endHour }}
                     </span>
                   </div>
                 </div>
@@ -331,12 +566,47 @@
                   class="p-2 bg-red-100 hover:bg-red-500 text-red-600 hover:text-white rounded-lg transition-all duration-200 hover:scale-110 opacity-75 group-hover:opacity-100 shadow-md hover:shadow-lg"
                   title="Verwijder evenement"
                 >
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <path
+                      d="M5.47058 6.01471V18.5294C5.47058 19.251 5.75721 19.943 6.26742 20.4532C6.77763 20.9634 7.46962 21.25 8.19117 21.25H15.8088C16.5304 21.25 17.2224 20.9634 17.7326 20.4532C18.2428 19.943 18.5294 19.251 18.5294 18.5294V6.01471"
+                      stroke="currentColor"
+                      stroke-width="1.5"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                    />
+                    <path
+                      d="M3.29413 6.01471H20.7059"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8.73529 6.01471V4.38235C8.73529 3.94943 8.90727 3.53423 9.2134 3.2281C9.51952 2.92198 9.93472 2.75 10.3676 2.75H13.6323C14.0653 2.75 14.4805 2.92198 14.7866 3.2281C15.0927 3.53423 15.2647 3.94943 15.2647 4.38235V6.01471"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M9.82352 16.9915V11.5535"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M14.1765 16.9915V11.5535"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
                     />
                   </svg>
                 </button>
