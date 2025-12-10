@@ -20,6 +20,7 @@ export class LoginComponent {
   password = signal('');
   isLoading = signal(false);
   errorMessage = signal<string | null>(null);
+  isFormExpanded = signal(false);
 
   // Handle form submission
   async onSubmit() {
@@ -65,5 +66,10 @@ export class LoginComponent {
   // Prevent modal from closing when clicking inside
   stopPropagation(event: Event) {
     event.stopPropagation();
+  }
+
+  // Toggle form expansion
+  toggleForm() {
+    this.isFormExpanded.set(!this.isFormExpanded());
   }
 }

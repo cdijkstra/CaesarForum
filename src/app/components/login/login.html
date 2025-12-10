@@ -100,88 +100,133 @@
       </div>
     </div>
 
-    <!-- Test Credentials Info -->
-    <div class="bg-violet-50 border border-violet-200 rounded-xl p-4 mb-6">
-      <p class="text-sm text-violet-800 font-medium">
-        <span class="font-semibold">Testgegevens:</span>
-        <br />
-        <span class="font-semibold">E-mail:</span> tester@test.nl
-        <br />
-        <span class="font-semibold">Wachtwoord:</span> Test123$
-      </p>
-    </div>
-
-    <!-- Login Form -->
-    <form (ngSubmit)="onSubmit()" class="space-y-4">
-      <!-- Email Field -->
-      <div>
-        <label for="email" class="block text-sm font-semibold text-gray-700 mb-2"> E-mail </label>
-        <input
-          id="email"
-          type="email"
-          [value]="email()"
-          (input)="email.set($event.target.value)"
-          required
-          class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-4 focus:ring-violet-100 focus:border-violet-500 transition-all duration-200 bg-white"
-          placeholder="Voer je e-mailadres in"
-          [disabled]="isLoading()"
-        />
-      </div>
-
-      <!-- Password Field -->
-      <div>
-        <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">
-          Wachtwoord
-        </label>
-        <input
-          id="password"
-          type="password"
-          [value]="password()"
-          (input)="password.set($event.target.value)"
-          required
-          class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-4 focus:ring-violet-100 focus:border-violet-500 transition-all duration-200 bg-white"
-          placeholder="Voer je wachtwoord in"
-          [disabled]="isLoading()"
-        />
-      </div>
-
-      <!-- Error Message -->
-      @if (errorMessage()) {
-      <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-lg">
-        <div class="flex items-center">
-          <svg
-            class="w-5 h-5 text-red-400 mr-3"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+    <!-- Collapsible Login Form Section -->
+    <div class="border border-gray-200 rounded-xl overflow-hidden">
+      <!-- Collapsible Header -->
+      <button
+        type="button"
+        (click)="toggleForm()"
+        class="w-full px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors flex items-center justify-between text-left"
+      >
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          <p class="text-red-700 font-medium text-sm">{{ errorMessage() }}</p>
+          <span class="text-sm font-medium text-gray-700">
+            Geen echt account? Gebruik testgegevens
+          </span>
         </div>
+        <svg
+          class="w-5 h-5 text-gray-600 transition-transform duration-200"
+          [class.rotate-180]="isFormExpanded()"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </button>
+
+      <!-- Collapsible Content -->
+      @if (isFormExpanded()) {
+      <div class="p-4 bg-white border-t border-gray-200">
+        <!-- Test Credentials Info -->
+        <div class="bg-violet-50 border border-violet-200 rounded-xl p-4 mb-4">
+          <p class="text-sm text-violet-800 font-medium">
+            <span class="font-semibold">Testgegevens:</span>
+            <br />
+            <span class="font-semibold">E-mail:</span> tester@test.nl
+            <br />
+            <span class="font-semibold">Wachtwoord:</span> Test123$
+          </p>
+        </div>
+
+        <!-- Login Form -->
+        <form (ngSubmit)="onSubmit()" class="space-y-4">
+          <!-- Email Field -->
+          <div>
+            <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
+              E-mail
+            </label>
+            <input
+              id="email"
+              type="email"
+              [value]="email()"
+              (input)="email.set($event.target.value)"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-4 focus:ring-violet-100 focus:border-violet-500 transition-all duration-200 bg-white"
+              placeholder="Voer je e-mailadres in"
+              [disabled]="isLoading()"
+            />
+          </div>
+
+          <!-- Password Field -->
+          <div>
+            <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">
+              Wachtwoord
+            </label>
+            <input
+              id="password"
+              type="password"
+              [value]="password()"
+              (input)="password.set($event.target.value)"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-4 focus:ring-violet-100 focus:border-violet-500 transition-all duration-200 bg-white"
+              placeholder="Voer je wachtwoord in"
+              [disabled]="isLoading()"
+            />
+          </div>
+
+          <!-- Error Message -->
+          @if (errorMessage()) {
+          <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-lg">
+            <div class="flex items-center">
+              <svg
+                class="w-5 h-5 text-red-400 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+                />
+              </svg>
+              <p class="text-red-700 font-medium text-sm">{{ errorMessage() }}</p>
+            </div>
+          </div>
+          }
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            [disabled]="isLoading()"
+            class="w-full bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+          >
+            @if (isLoading()) {
+            <div
+              class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"
+            ></div>
+            <span>Inloggen...</span>
+            } @else {
+            <span>Inloggen</span>
+            }
+          </button>
+        </form>
       </div>
       }
-
-      <!-- Submit Button -->
-      <button
-        type="submit"
-        [disabled]="isLoading()"
-        class="w-full bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-      >
-        @if (isLoading()) {
-        <div
-          class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"
-        ></div>
-        <span>Inloggen...</span>
-        } @else {
-        <span>Inloggen</span>
-        }
-      </button>
-    </form>
+    </div>
   </div>
 </div>
