@@ -89,6 +89,13 @@ export class UserService {
     return { success: false, error: errorMessage };
   }
 
+  // Login with OAuth2 provider
+  loginWithOAuth2(provider: string): void {
+    this.pocketbaseService.loginWithOAuth2(provider);
+    // Note: The user will be redirected to the OAuth provider
+    // After authentication, PocketBase will redirect back and the authStore.onChange listener will handle updating the user state
+  }
+
   // Logout
   logout(): void {
     this.pocketbaseService.logout();

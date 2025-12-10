@@ -98,6 +98,22 @@ export class PocketbaseService {
     return authData.record as unknown as User;
   }
 
+  // OAuth2 login
+  loginWithOAuth2(provider: string): void {
+    this.client
+      .collection('users')
+      .authWithOAuth2({
+        provider: provider,
+        scopes: ['email', 'openid', 'profile'],
+        createData: {
+          emailVisibility: false,
+        },
+      })
+      .catch((error) => {
+        console.error('OAuth login error:', error);
+      });
+  }
+
   logout(): void {
     this.client.authStore.clear();
   }

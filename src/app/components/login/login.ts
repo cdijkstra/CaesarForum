@@ -48,6 +48,15 @@ export class LoginComponent {
     this.isLoading.set(false);
   }
 
+  // Handle Microsoft OAuth login
+  onMicrosoftLogin() {
+    this.isLoading.set(true);
+    this.errorMessage.set(null);
+    this.userService.loginWithOAuth2('microsoft');
+    // Note: The user will be redirected to Microsoft for authentication
+    // The modal will close automatically after redirect
+  }
+
   // Handle close button or overlay click
   onClose() {
     this.close.emit();

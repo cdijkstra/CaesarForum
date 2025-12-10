@@ -46,6 +46,54 @@
       <p class="text-gray-600 mt-2">Log in om evenementen aan te maken en te beheren</p>
     </div>
 
+    <!-- Azure Entra ID Info -->
+    <div class="bg-violet-50 border border-violet-200 rounded-xl p-4 mb-6">
+      <p class="text-sm text-violet-800 font-medium">
+        Dit is een losse Azure Entra ID Tenant, dus wellicht moet je daar eerst aan toegevoegd
+        worden. Dit wordt later de echte caesar.nl Azure Entra ID
+      </p>
+    </div>
+
+    <!-- Microsoft OAuth Button -->
+    <button
+      type="button"
+      (click)="onMicrosoftLogin()"
+      [disabled]="isLoading()"
+      class="w-full bg-white hover:bg-gray-50 border-2 border-gray-300 hover:border-gray-400 text-gray-700 font-semibold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-md hover:shadow-lg flex items-center justify-center gap-3"
+    >
+      @if (isLoading()) {
+      <div
+        class="w-5 h-5 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"
+      ></div>
+      <span>Verbinding maken...</span>
+      } @else {
+      <!-- Microsoft Logo SVG -->
+      <svg
+        width="21"
+        height="21"
+        viewBox="0 0 21 21"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect x="0" y="0" width="10" height="10" fill="#F25022" />
+        <rect x="11" y="0" width="10" height="10" fill="#7FBA00" />
+        <rect x="0" y="11" width="10" height="10" fill="#00A4EF" />
+        <rect x="11" y="11" width="10" height="10" fill="#FFB900" />
+      </svg>
+      <span>Inloggen met Microsoft</span>
+      }
+    </button>
+
+    <!-- Divider -->
+    <div class="relative my-6">
+      <div class="absolute inset-0 flex items-center">
+        <div class="w-full border-t border-gray-300"></div>
+      </div>
+      <div class="relative flex justify-center text-sm">
+        <span class="px-2 bg-white text-gray-500">of</span>
+      </div>
+    </div>
+
     <!-- Test Credentials Info -->
     <div class="bg-violet-50 border border-violet-200 rounded-xl p-4 mb-6">
       <p class="text-sm text-violet-800 font-medium">

@@ -1,4 +1,4 @@
-import { Component, signal, inject, computed } from '@angular/core';
+import { Component, signal, inject, computed, effect } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UserProfileComponent } from './components/user-profile/user-profile';
 import { UserService } from './services/user.service';
@@ -21,6 +21,15 @@ export class App {
 
   // Login modal visibility
   showLoginModal = signal(false);
+
+  constructor() {
+    // Close modal automatically when user becomes authenticated (e.g., after OAuth login)
+    effect(() => {
+      if (this.isAuthenticated() && this.showLoginModal()) {
+        this.showLoginModal.set(false);
+      }
+    });
+  }
 
   // Open login modal
   openLogin() {
